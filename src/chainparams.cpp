@@ -513,7 +513,7 @@ public:
 
         vSeeds.clear();
         // nodes with support for servicebits filtering should be at the top
-        vSeeds.emplace_back("140.82.2.72 ", true);
+        vSeeds.emplace_back("140.82.2.72", true);
 
         // Genix addresses start with 'g'
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,98);
@@ -548,7 +548,7 @@ public:
         nPoolMaxParticipants = 5;
         nFulfilledRequestExpireTime = 5*60; // fulfilled requests expire in 5 minutes
 
-        vSporkAddresses = {"gnmpGqoz14GEvKtDHbWShNxRCNeAy8oKVq"};
+        vSporkAddresses = {"gZfpknwVj7dotwK9wcbMk9PNuLpAMmmQWY"};
         nMinSporkKeys = 1;
         fBIP9CheckMasternodesUpgraded = true;
 
