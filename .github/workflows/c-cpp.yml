@@ -1,11 +1,11 @@
-name: Continuous Integration on Master
+name: Continuous Integration on v2.2.3
 on:
   push:
     branches:
-    - master
+    - v2.2.3
   pull_request:
     branches:
-    - master
+    - v2.2.3
 env:
   SOURCE_ARTIFACT: source
 jobs:
