@@ -141,6 +141,24 @@ static CBlock FindDevNetGenesisBlock(const Consensus::Params& params, const CBlo
     assert(false);
 }
 
+static Consensus::LLMQParams llmq_test = {
+        .type = Consensus::LLMQ_TEST,
+        .name = "llmq_test",
+        .size = 10,
+        .minSize = 6,
+        .threshold = 3,
+
+        .dkgInterval = 30, // one DKG per hour
+        .dkgPhaseBlocks = 2,
+        .dkgMiningWindowStart = 10, // dkgPhaseBlocks * 5 = after finalization
+        .dkgMiningWindowEnd = 24,
+        .dkgBadVotesThreshold = 8,
+
+        .signingActiveQuorumCount = 2, // just a few ones to allow easier testing
+
+        .keepOldConnections = 3,
+};
+
 // this one is for testing only
 static Consensus::LLMQParams llmq5_60 = {
         .type = Consensus::LLMQ_5_60,
@@ -409,13 +427,13 @@ public:
         consensus.nGovernanceFilterElements = 500;
         consensus.nMasternodeMinimumConfirmations = 1;
         consensus.BIP34Height = 0;
-        consensus.BIP34Hash = uint256S("0x000006874678aa53f78b7676ced0f443cd22ae8917199b5ec14d0b7b7df7b93d");
+        consensus.BIP34Hash = uint256S("0x0000038977617c01646209e33e354174ef916df8284346b29aecfbc98fa43dd0");
         consensus.BIP65Height = 2431; // 0000039cf01242c7f921dcb4806a5994bc003b48c1973ae0c89b67809c2bb2ab
         consensus.BIP66Height = 2075; // 0000002acdd29a14583540cb72e1c5cc83783560e38fa7081495d474fe1671f7
         consensus.DIP0001Height = 200;
         consensus.DIP0003Height = 1200;
         consensus.DIP0003EnforcementHeight = 1500;
-        consensus.DIP0003EnforcementHash = uint256S("00000055ebc0e974ba3a3fb785c5ad4365a39637d4df168169ee80d313612f8f");
+        consensus.DIP0003EnforcementHash = uint256S("0x000");
         consensus.powLimit = uint256S("00000fffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"); // ~uint256(0) >> 20
         consensus.nPowTargetTimespan = 1 * 60; // Genix: 1 hour
         consensus.nPowTargetSpacing = 2 * 60; // Genix: 2.5 minutes
@@ -463,18 +481,17 @@ public:
         consensus.vDeployments[Consensus::DEPLOYMENT_DIP0008].nThreshold = 50; // 50% of 100
 
         // The best chain should have at least this much work.
-        consensus.nMinimumChainWork = uint256S("0x00"); // 0
-
+        consensus.nMinimumChainWork = uint256S("0x0000000000000000000000000000000000000000000000000000002326b7ad43");
         // By default assume that the signatures in ancestors of this block are valid.
-        consensus.defaultAssumeValid = uint256S("0x00"); // 0
+        consensus.defaultAssumeValid = uint256S("0x00000000fe40237c8a84941ff36124fc85051548a35cc9aaa83a7bf30b708ddd"); // 0
 
-        pchMessageStart[0] = 0xcf;
-        pchMessageStart[1] = 0x4e;
+        pchMessageStart[0] = 0xcc;
+        pchMessageStart[1] = 0x2d;
         pchMessageStart[2] = 0x3b;
         pchMessageStart[3] = 0x49;
         nDefaultPort = 32538;
         nPruneAfterHeight = 1000;
-
+        
 /*  
 	        // calculate Genesis Block
         hashGenesisBlock = genesis.GetHash();
@@ -513,7 +530,7 @@ public:
 
         vSeeds.clear();
         // nodes with support for servicebits filtering should be at the top
-        vSeeds.emplace_back("140.82.2.72", true);
+        vSeeds.emplace_back("45.77.162.183", true);
 
         // Genix addresses start with 'g'
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,98);
@@ -531,10 +548,11 @@ public:
 
         // long living quorum params
         consensus.llmqs[Consensus::LLMQ_5_60] = llmq5_60;
+        consensus.llmqs[Consensus::LLMQ_TEST] = llmq_test;
         consensus.llmqs[Consensus::LLMQ_50_60] = llmq50_60;
         consensus.llmqs[Consensus::LLMQ_400_60] = llmq400_60;
         consensus.llmqs[Consensus::LLMQ_400_85] = llmq400_85;
-        consensus.llmqTypeChainLocks = Consensus::LLMQ_5_60;
+        consensus.llmqTypeChainLocks = Consensus::LLMQ_TEST;
         consensus.llmqTypeInstantSend = Consensus::LLMQ_5_60;
 
         fDefaultConsistencyChecks = false;
@@ -548,13 +566,13 @@ public:
         nPoolMaxParticipants = 5;
         nFulfilledRequestExpireTime = 5*60; // fulfilled requests expire in 5 minutes
 
-        vSporkAddresses = {"gZfpknwVj7dotwK9wcbMk9PNuLpAMmmQWY"};
+        vSporkAddresses = {"gkPR7DsPjMNrd67DREjiVsnBKcZK1X4RN2"};
         nMinSporkKeys = 1;
         fBIP9CheckMasternodesUpgraded = true;
 
         checkpointData = (CCheckpointData) {
             {
-//                {200000, uint256S("0x000000001015eb5ef86a8fe2b3074d947bc972c5befe32b28dd5ce915dc0d029")},
+                {650, uint256S("0x0000000051545c277a99fd7fb6385f8af7b807c696d1cc6ef5f23c6c53b834a3")},
             }
         };
 

@@ -50,6 +50,7 @@ enum LLMQType : uint8_t
 
     // for testing only
     LLMQ_5_60 = 100, // 5 members, 3 (60%) threshold, one per hour
+    LLMQ_TEST = 101,
 };
 
 // Configures a LLMQ and its DKG
