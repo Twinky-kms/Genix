@@ -430,9 +430,9 @@ public:
         consensus.BIP34Hash = uint256S("0x0000038977617c01646209e33e354174ef916df8284346b29aecfbc98fa43dd0");
         consensus.BIP65Height = 2431; // 0000039cf01242c7f921dcb4806a5994bc003b48c1973ae0c89b67809c2bb2ab
         consensus.BIP66Height = 2075; // 0000002acdd29a14583540cb72e1c5cc83783560e38fa7081495d474fe1671f7
-        consensus.DIP0001Height = 200;
-        consensus.DIP0003Height = 1200;
-        consensus.DIP0003EnforcementHeight = 1500;
+        consensus.DIP0001Height = 50;
+        consensus.DIP0003Height = 100;
+        consensus.DIP0003EnforcementHeight = 150;
         consensus.DIP0003EnforcementHash = uint256S("0x000");
         consensus.powLimit = uint256S("00000fffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"); // ~uint256(0) >> 20
         consensus.nPowTargetTimespan = 1 * 60; // Genix: 1 hour
@@ -481,14 +481,14 @@ public:
         consensus.vDeployments[Consensus::DEPLOYMENT_DIP0008].nThreshold = 50; // 50% of 100
 
         // The best chain should have at least this much work.
-        consensus.nMinimumChainWork = uint256S("0x0000000000000000000000000000000000000000000000000000002326b7ad43");
+        consensus.nMinimumChainWork = uint256S("0x000");
         // By default assume that the signatures in ancestors of this block are valid.
-        consensus.defaultAssumeValid = uint256S("0x00000000fe40237c8a84941ff36124fc85051548a35cc9aaa83a7bf30b708ddd"); // 0
+        consensus.defaultAssumeValid = uint256S("0x000"); // 0
 
-        pchMessageStart[0] = 0xcc;
-        pchMessageStart[1] = 0x2d;
-        pchMessageStart[2] = 0x3b;
-        pchMessageStart[3] = 0x49;
+        pchMessageStart[0] = 0xcd;
+        pchMessageStart[1] = 0x4d;
+        pchMessageStart[2] = 0x1b;
+        pchMessageStart[3] = 0x43;
         nDefaultPort = 32538;
         nPruneAfterHeight = 1000;
         
@@ -572,7 +572,7 @@ public:
 
         checkpointData = (CCheckpointData) {
             {
-                {650, uint256S("0x0000000051545c277a99fd7fb6385f8af7b807c696d1cc6ef5f23c6c53b834a3")},
+                // {650, uint256S("0x0000000051545c277a99fd7fb6385f8af7b807c696d1cc6ef5f23c6c53b834a3")},
             }
         };
 
